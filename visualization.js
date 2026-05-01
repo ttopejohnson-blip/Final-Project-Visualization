@@ -2,27 +2,27 @@ let originalData = [];
 let filteredData = [];
 
 const genreColors = {
-    'Battle Royale': '#FF6B6B',
-    'Action RPG': '#4ECDC4',
-    'MMORPG': '#45B7D1',
-    'Fighting': '#96CEB4',
-    'Racing': '#FFEAA7',
-    'Simulation': '#DDA0DD',
-    'Strategy': '#98D8C8',
-    'Role Playing': '#F7B731',
-    'Puzzle': '#A8E6CF',
-    'Casual': '#FF8C94',
-    'Card': '#B5EAD7',
-    'MOBA': '#C7CEEA',
-    'Sports': '#FFD93D',
-    'Adventure': '#6BCB77',
-    'Sandbox': '#4D96FF'
+    'Battle Royale': '#e74c3c',
+    'Action RPG': '#3498db',
+    'MMORPG': '#2ecc71',
+    'Fighting': '#f39c12',
+    'Racing': '#9b59b6',
+    'Simulation': '#1abc9c',
+    'Strategy': '#e67e22',
+    'Role Playing': '#e84393',
+    'Puzzle': '#95a5a6',
+    'Casual': '#7f8c8d',
+    'Card': '#16a085',
+    'MOBA': '#27ae60',
+    'Sports': '#2980b9',
+    'Adventure': '#8e44ad',
+    'Sandbox': '#d35400'
 };
 
 const segmentColors = {
-    'Whale': '#FF4757',
-    'Dolphin': '#FFA502',
-    'Minnow': '#2ED573'
+    'Whale': '#c0392b',
+    'Dolphin': '#e67e22',
+    'Minnow': '#27ae60'
 };
 
 function loadData() {
@@ -138,17 +138,16 @@ function updateAllVisualizations() {
 }
 
 function updateGenreChart() {
-    const margin = { top: 30, right: 30, bottom: 80, left: 60 };
+    const margin = { top: 30, right: 20, bottom: 80, left: 60 };
     const width = document.getElementById('genreChart').clientWidth - margin.left - margin.right;
-    const height = 400 - margin.top - margin.bottom;
+    const height = 350 - margin.top - margin.bottom;
     
     d3.select('#genreChart').selectAll('*').remove();
     
     const genreData = d3.rollup(filteredData, 
         v => ({
             avgAmount: d3.mean(v, d => d.InAppPurchaseAmount),
-            count: v.length,
-            totalAmount: d3.sum(v, d => d.InAppPurchaseAmount)
+            count: v.length
         }),
         d => d.GameGenre
     );
@@ -156,8 +155,7 @@ function updateGenreChart() {
     let genreArray = Array.from(genreData, ([genre, stats]) => ({
         genre,
         avgAmount: stats.avgAmount,
-        count: stats.count,
-        totalAmount: stats.totalAmount
+        count: stats.count
     })).sort((a, b) => b.avgAmount - a.avgAmount);
     
     const svg = d3.select('#genreChart')
@@ -180,16 +178,14 @@ function updateGenreChart() {
         .data(genreArray)
         .enter()
         .append('rect')
-        .attr('class', 'bar')
         .attr('x', d => xScale(d.genre))
         .attr('width', xScale.bandwidth())
         .attr('y', d => yScale(d.avgAmount))
         .attr('height', d => height - yScale(d.avgAmount))
-        .attr('fill', d => genreColors[d.genre] || '#888')
-        .attr('rx', 4)
+        .attr('fill', d => genreColors[d.genre] || '#7f8c8d')
         .on('mouseover', function(event, d) {
             d3.select(this).attr('opacity', 0.7);
-            showTooltip(event, `Genre: ${d.genre}\nAvg Spend: $${d.avgAmount.toFixed(2)}\nPlayers: ${d.count}`);
+            showTooltip(event, `Genre: ${d.genre}\nAvg: $${d.avgAmount.toFixed(2)}\nPlayers: ${d.count}`);
         })
         .on('mouseout', function() {
             d3.select(this).attr('opacity', 1);
@@ -201,39 +197,24 @@ function updateGenreChart() {
         .attr('transform', `translate(0,${height})`)
         .call(d3.axisBottom(xScale))
         .selectAll('text')
-        .attr('transform', 'rotate(-45)')
+        .attr('transform', 'rotate(-35)')
         .style('text-anchor', 'end')
         .attr('dx', '-0.5em')
-        .attr('dy', '0.5em');
-    
-    svg.append('text')
-        .attr('x', width / 2)
-        .attr('y', height + 50)
-        .attr('text-anchor', 'middle')
-        .style('font-size', '12px')
-        .text('Game Genre');
-    
-    svg.append('text')
-        .attr('transform', 'rotate(-90)')
-        .attr('x', -height / 2)
-        .attr('y', -45)
-        .attr('text-anchor', 'middle')
-        .style('font-size', '12px')
-        .text('Average Purchase Amount ($)');
+        .attr('dy', '0.3em')
+        .style('font-size', '10px');
 }
 
 function updateSegmentChart() {
-    const margin = { top: 30, right: 30, bottom: 50, left: 70 };
+    const margin = { top: 30, right: 20, bottom: 40, left: 70 };
     const width = document.getElementById('segmentChart').clientWidth - margin.left - margin.right;
-    const height = 400 - margin.top - margin.bottom;
+    const height = 350 - margin.top - margin.bottom;
     
     d3.select('#segmentChart').selectAll('*').remove();
     
     const segmentData = d3.rollup(filteredData,
         v => ({
             avgAmount: d3.mean(v, d => d.InAppPurchaseAmount),
-            count: v.length,
-            totalAmount: d3.sum(v, d => d.InAppPurchaseAmount)
+            count: v.length
         }),
         d => d.SpendingSegment
     );
@@ -268,10 +249,9 @@ function updateSegmentChart() {
         .attr('width', xScale.bandwidth())
         .attr('y', d => yScale(d.avgAmount))
         .attr('height', d => height - yScale(d.avgAmount))
-        .attr('fill', d => segmentColors[d.segment] || '#888')
-        .attr('rx', 4)
+        .attr('fill', d => segmentColors[d.segment] || '#7f8c8d')
         .on('mouseover', function(event, d) {
-            showTooltip(event, `${d.segment}\nAvg Spend: $${d.avgAmount.toFixed(2)}\nPlayers: ${d.count}`);
+            showTooltip(event, `${d.segment}\nAvg: $${d.avgAmount.toFixed(2)}\nPlayers: ${d.count}`);
         })
         .on('mouseout', hideTooltip);
     
@@ -293,7 +273,7 @@ function updateSegmentChart() {
 function updateGeoChart() {
     const margin = { top: 30, right: 100, bottom: 50, left: 100 };
     const width = document.getElementById('geoChart').clientWidth - margin.left - margin.right;
-    const height = 400 - margin.top - margin.bottom;
+    const height = 350 - margin.top - margin.bottom;
     
     d3.select('#geoChart').selectAll('*').remove();
     
@@ -331,28 +311,20 @@ function updateGeoChart() {
         .attr('height', yScale.bandwidth())
         .attr('x', 0)
         .attr('width', d => xScale(d.totalSpend))
-        .attr('fill', '#4ECDC4')
-        .attr('rx', 4)
+        .attr('fill', '#3498db')
         .on('mouseover', function(event, d) {
-            showTooltip(event, `${d.country}\nTotal Spend: $${d.totalSpend.toFixed(2)}`);
+            showTooltip(event, `${d.country}\nTotal: $${d.totalSpend.toFixed(2)}`);
         })
         .on('mouseout', hideTooltip);
     
     svg.append('g').call(d3.axisLeft(yScale));
     svg.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(xScale));
-    
-    svg.append('text')
-        .attr('x', width / 2)
-        .attr('y', height + 40)
-        .attr('text-anchor', 'middle')
-        .style('font-size', '12px')
-        .text('Total Purchase Amount ($)');
 }
 
 function updateScatterChart() {
-    const margin = { top: 30, right: 30, bottom: 60, left: 70 };
+    const margin = { top: 30, right: 100, bottom: 50, left: 70 };
     const width = document.getElementById('scatterChart').clientWidth - margin.left - margin.right;
-    const height = 400 - margin.top - margin.bottom;
+    const height = 350 - margin.top - margin.bottom;
     
     d3.select('#scatterChart').selectAll('*').remove();
     
@@ -379,17 +351,17 @@ function updateScatterChart() {
         .append('circle')
         .attr('cx', d => xScale(d.SessionCount || 0))
         .attr('cy', d => yScale(d.InAppPurchaseAmount))
-        .attr('r', 5)
-        .attr('fill', d => segmentColors[d.SpendingSegment] || '#888')
+        .attr('r', 4)
+        .attr('fill', d => segmentColors[d.SpendingSegment] || '#7f8c8d')
         .attr('opacity', 0.6)
         .attr('stroke', 'white')
-        .attr('stroke-width', 1)
+        .attr('stroke-width', 0.5)
         .on('mouseover', function(event, d) {
-            d3.select(this).attr('r', 8).attr('opacity', 1);
+            d3.select(this).attr('r', 7).attr('opacity', 1);
             showTooltip(event, `Sessions: ${d.SessionCount}\nPurchase: $${d.InAppPurchaseAmount.toFixed(2)}\nGenre: ${d.GameGenre}\nSegment: ${d.SpendingSegment}`);
         })
         .on('mouseout', function() {
-            d3.select(this).attr('r', 5).attr('opacity', 0.6);
+            d3.select(this).attr('r', 4).attr('opacity', 0.6);
             hideTooltip();
         });
     
@@ -414,33 +386,18 @@ function updateScatterChart() {
         .attr('y1', yScale(lineY1))
         .attr('x2', xScale(lineX2))
         .attr('y2', yScale(lineY2))
-        .attr('stroke', '#FF6B6B')
-        .attr('stroke-width', 2)
-        .attr('stroke-dasharray', '5,5');
+        .attr('stroke', '#c0392b')
+        .attr('stroke-width', 1.5)
+        .attr('stroke-dasharray', '4,4');
     
     svg.append('g').call(d3.axisLeft(yScale).tickFormat(d => `$${d.toFixed(0)}`));
     svg.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(xScale));
     
-    svg.append('text')
-        .attr('x', width / 2)
-        .attr('y', height + 40)
-        .attr('text-anchor', 'middle')
-        .style('font-size', '12px')
-        .text('Session Count');
-    
-    svg.append('text')
-        .attr('transform', 'rotate(-90)')
-        .attr('x', -height / 2)
-        .attr('y', -50)
-        .attr('text-anchor', 'middle')
-        .style('font-size', '12px')
-        .text('Purchase Amount ($)');
-    
-    const legend = svg.append('g').attr('transform', `translate(${width - 100}, 0)`);
+    const legend = svg.append('g').attr('transform', `translate(${width - 80}, 0)`);
     let legendY = 0;
     Object.entries(segmentColors).forEach(([segment, color]) => {
-        legend.append('circle').attr('cx', 0).attr('cy', legendY).attr('r', 5).attr('fill', color);
-        legend.append('text').attr('x', 12).attr('y', legendY + 4).style('font-size', '10px').text(segment);
+        legend.append('circle').attr('cx', 0).attr('cy', legendY).attr('r', 4).attr('fill', color);
+        legend.append('text').attr('x', 10).attr('y', legendY + 3).style('font-size', '10px').text(segment);
         legendY += 15;
     });
 }
@@ -466,15 +423,15 @@ function updateInsights() {
             <div class="insight-value">$${totalRevenue.toFixed(0)}</div>
         </div>
         <div class="insight-card">
-            <div class="insight-label">Avg. Purchase</div>
+            <div class="insight-label">Average Purchase</div>
             <div class="insight-value">$${avgPurchase.toFixed(2)}</div>
         </div>
         <div class="insight-card">
-            <div class="insight-label">Players Analyzed</div>
+            <div class="insight-label">Players</div>
             <div class="insight-value">${totalPlayers.toLocaleString()}</div>
         </div>
         <div class="insight-card">
-            <div class="insight-label">Whale Revenue Percent</div>
+            <div class="insight-label">Whale Revenue</div>
             <div class="insight-value">${whalePercent}%</div>
         </div>
         <div class="insight-card">
