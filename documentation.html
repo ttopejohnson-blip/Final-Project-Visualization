@@ -142,14 +142,37 @@
     <h1>Mobile Game Analytics - Project Documentation</h1>
     <p><strong>Student:</strong> ttopejohnson-blip | <strong>Class:</strong> Interactive Visualization (D3) | <strong>Due:</strong> May 1, 2026</p>
     
-    <div class="card">
-        <h2>Video Demonstration</h2>
-        <div class="video-placeholder">
-            [Screen recording of dashboard interaction goes here]<br>
-            Duration: 2-3 minutes showing filters, hover effects, and key insights
-        </div>
-        <p><em>YouTube link will be added here after recording</em></p>
+<div class="card">
+    <h2>Video Demonstration</h2>
+    <div style="text-align: center; padding: 40px; background: #f9f9f9; border: 2px dashed #ccc;">
+        <p>Watch the walkthrough of the dashboard features:</p>
+        <!-- Replace the '#' with your copied GitHub Release link -->
+        <button class="nav a" onclick="openVideo()" style="font-size: 1.1em; cursor: pointer;">
+            Video
+        </button>
     </div>
+    
+    <!-- Simple Modal for the Video -->
+    <div id="videoModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999;">
+        <div style="position:relative; width:80%; max-width:800px; margin:5% auto;">
+            <span onclick="closeVideo()" style="color:white; font-size:30px; cursor:pointer; float:right;">&times;</span>
+            <video id="demoVid" controls style="width:100%; border:5px solid white; border-radius:8px;">
+                <source src="YOUR_GITHUB_RELEASE_LINK_HERE.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openVideo() {
+        document.getElementById('videoModal').style.display = 'block';
+    }
+    function closeVideo() {
+        const vid = document.getElementById('demoVid');
+        document.getElementById('videoModal').style.display = 'none';
+        vid.pause();
+    }
+</script>
     
     <div class="card" id="design">
         <h2>Design Process and Sketches</h2>
