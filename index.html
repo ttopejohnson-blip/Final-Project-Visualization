@@ -24,6 +24,9 @@
             color: white;
             padding: 20px;
             border-bottom: 3px solid #ff9900;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         .header h1 {
@@ -35,6 +38,21 @@
             margin: 0;
             font-size: 14px;
             color: #ddd;
+        }
+
+        .doc-button {
+            background: #ff9900;
+            color: #2c3e6b !important;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .doc-button:hover {
+            background: #e68a00;
         }
         
         .insights-bar {
@@ -95,14 +113,14 @@
             border: 1px solid #ccc;
         }
         
-        button {
+        #resetBtn {
             background: #2c3e6b;
             color: white;
             border: none;
             cursor: pointer;
         }
         
-        button:hover {
+        #resetBtn:hover {
             background: #ff9900;
         }
         
@@ -146,12 +164,11 @@
             .viz-grid {
                 grid-template-columns: 1fr;
             }
-        }
-        
-        hr {
-            margin: 0;
-            border: none;
-            border-top: 1px solid #ddd;
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
         }
         
         .footer {
@@ -167,8 +184,11 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>Mobile Game In-App Purchase Analysis</h1>
-        <p>Data from 2000+ players | Spending patterns by genre, region, and engagement</p>
+        <div>
+            <h1>Mobile Game In-App Purchase Analysis</h1>
+            <p>Data from 2000+ players | Spending patterns by genre, region, and engagement</p>
+        </div>
+        <a href="documentation.html" class="doc-button">View Project Documentation</a>
     </div>
 
     <div class="insights-bar" id="insightsBar"></div>
