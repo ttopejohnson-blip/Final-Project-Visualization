@@ -4,130 +4,26 @@
     <meta charset="UTF-8">
     <title>Project Documentation</title>
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f0f0f0;
-            line-height: 1.5;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border: 1px solid #ccc;
-            padding: 25px;
-        }
-        
-        h1 {
-            color: #2c3e6b;
-            border-bottom: 2px solid #ff9900;
-            padding-bottom: 8px;
-            margin-top: 0;
-        }
-        
-        h2 {
-            color: #2c3e6b;
-            border-left: 3px solid #ff9900;
-            padding-left: 12px;
-            margin-top: 30px;
-        }
-        
-        h3 {
-            color: #555;
-            margin-top: 20px;
-        }
-        
-        .card {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .sketch {
-            background: white;
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin: 15px 0;
-            text-align: center;
-        }
-        
-        .sketch-box {
-            background: #e8e8e8;
-            padding: 20px;
-            margin: 10px 0;
-            font-family: monospace;
-        }
-        
-        .finding {
-            background: #eaf7ea;
-            border-left: 3px solid #27ae60;
-            padding: 12px;
-            margin: 15px 0;
-        }
-        
-        .video-placeholder {
-            background: #333;
-            color: white;
-            padding: 60px;
-            text-align: center;
-            margin: 15px 0;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
-        
-        th {
-            background: #2c3e6b;
-            color: white;
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 2px 6px;
-            font-size: 11px;
-            font-weight: bold;
-            border-radius: 3px;
-            color: white;
-        }
-        
+        body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 20px; background: #f0f0f0; line-height: 1.5; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border: 1px solid #ccc; padding: 25px; }
+        h1 { color: #2c3e6b; border-bottom: 2px solid #ff9900; padding-bottom: 8px; margin-top: 0; }
+        h2 { color: #2c3e6b; border-left: 3px solid #ff9900; padding-left: 12px; margin-top: 30px; }
+        h3 { color: #555; margin-top: 20px; }
+        .card { background: #f9f9f9; border: 1px solid #ddd; padding: 20px; margin-bottom: 25px; }
+        .sketch { background: white; border: 1px solid #ccc; padding: 15px; margin: 15px 0; text-align: center; }
+        .sketch-box { background: #e8e8e8; padding: 20px; margin: 10px 0; font-family: monospace; }
+        .finding { background: #eaf7ea; border-left: 3px solid #27ae60; padding: 12px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #2c3e6b; color: white; }
+        .badge { display: inline-block; padding: 2px 6px; font-size: 11px; font-weight: bold; border-radius: 3px; color: white; }
         .badge-whale { background: #c0392b; }
         .badge-dolphin { background: #e67e22; }
         .badge-minnow { background: #27ae60; }
-        
-        .nav {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .nav a {
-            background: #2c3e6b;
-            color: white;
-            padding: 8px 15px;
-            text-decoration: none;
-        }
-        
-        .nav a:hover {
-            background: #ff9900;
-        }
-        
-        hr {
-            margin: 25px 0;
-            border: none;
-            border-top: 1px solid #ccc;
-        }
+        .nav { display: flex; gap: 15px; margin-bottom: 25px; }
+        .nav a { background: #2c3e6b; color: white; padding: 8px 15px; text-decoration: none; }
+        .nav a:hover { background: #ff9900; }
+        hr { margin: 25px 0; border: none; border-top: 1px solid #ccc; }
     </style>
 </head>
 <body>
@@ -142,25 +38,23 @@
     <h1>Mobile Game Analytics - Project Documentation</h1>
     <p><strong>Student:</strong> ttopejohnson-blip | <strong>Class:</strong> Interactive Visualization (D3) | <strong>Due:</strong> May 1, 2026</p>
     
-<div class="card">
-    <h2>Video Demonstration</h2>
-    <div style="text-align: center; padding: 40px; background: #f9f9f9; border: 2px dashed #ccc;">
-        <p>The project walkthrough is hosted on Google Drive for high-quality playback:</p>
-        <br>
-        <!-- Paste your Google Drive link in the href below -->
-        <a href="https://drive.google.com/file/d/1Hn4WBXvghoHzUsWKD9MuM0gz9iDunvdc/view?usp=sharing" target="_blank" 
-           style="background: #2c3e6b; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
-            Video
-        </a>
+    <div class="card">
+        <h2>Video Demonstration</h2>
+        <div style="text-align: center; padding: 40px; background: #f9f9f9; border: 2px dashed #ccc;">
+            <p>The project walkthrough is hosted on Google Drive for high-quality playback:</p>
+            <br>
+            <a href="https://drive.google.com/file/d/1Hn4WBXvghoHzUsWKD9MuM0gz9iDunvdc/view?usp=sharing" target="_blank" 
+               style="background: #2c3e6b; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+                ▶ Watch Project Demo Video
+            </a>
+        </div>
+        <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
+            <em>Note: Clicking the button will open the video in a new tab.</em>
+        </p>
     </div>
-    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
-        <em>Note: Clicking the button will open the video in a new tab.</em>
-    </p>
-</div>
     
     <div class="card" id="design">
         <h2>Design Process and Sketches</h2>
-        
         <h3>Research Questions</h3>
         <ol>
             <li>What factors drive high-value spenders in mobile games?</li>
@@ -169,84 +63,38 @@
         </ol>
         
         <h3>Initial Sketches</h3>
-        
         <div class="sketch">
-            <div class="sketch-box">
-                [Bar chart sketch]<br>
-                Genres on X-axis, Average spend on Y-axis<br>
-                Bars show RPG highest, Puzzle lowest
-            </div>
-            <p><strong>Version 1:</strong> Basic bar chart comparing genres. Needed more context about player segments.</p>
+            <div class="sketch-box">[Bar chart sketch]<br>Genres on X-axis, Average spend on Y-axis</div>
+            <p><strong>Version 1:</strong> Basic bar chart comparing genres.</p>
         </div>
-        
         <div class="sketch">
-            <div class="sketch-box">
-                [Horizontal bar chart sketch]<br>
-                Country names on left, bars extending right<br>
-                USA, China, Japan at top
-            </div>
-            <p><strong>Version 2:</strong> Geographic analysis. Horizontal layout worked better for country names.</p>
-        </div>
-        
-        <div class="sketch">
-            <div class="sketch-box">
-                [Scatter plot sketch]<br>
-                Dots scattered with upward trend line<br>
-                Red dots for high spenders
-            </div>
-            <p><strong>Version 3:</strong> Added scatter plot to show sessions vs spend relationship.</p>
+            <div class="sketch-box">[Horizontal bar chart sketch]<br>Country names on left, bars extending right</div>
+            <p><strong>Version 2:</strong> Geographic analysis.</p>
         </div>
         
         <h3>Final Design Decisions</h3>
         <ul>
-            <li>Four charts to answer different aspects of the research questions</li>
-            <li>Filters allow users to explore specific subsets</li>
-            <li>Color coding for spending segments (red/orange/green)</li>
-            <li>Tooltips show detailed data on hover</li>
+            <li>Four charts to answer different aspects of research questions</li>
+            <li>Color coding for spending segments (Whale/Dolphin/Minnow)</li>
+            <li>Tooltips show exact values for precise reading</li>
         </ul>
     </div>
-    
+
     <div class="card" id="rationale">
         <h2>Design Rationale</h2>
-        
-        <h3>Chart Type Selections</h3>
         <table>
-            <tr>
-                <th>Chart</th>
-                <th>Purpose</th>
-                <th>Why</th>
-            </tr>
-            <tr>
-                <td>Genre Bar Chart</td>
-                <td>Compare average spend by genre</td>
-                <td>Bars make category comparison easy</td>
-            </tr>
-            <tr>
-                <td>Segment Bar Chart</td>
-                <td>Show Whale/Dolphin/Minnow differences</td>
-                <td>Clear visual hierarchy of spending levels</td>
-            </tr>
-            <tr>
-                <td>Horizontal Country Chart</td>
-                <td>Top 10 countries by total spend</td>
-                <td>Horizontal orientation fits longer names</td>
-            </tr>
-            <tr>
-                <td>Scatter Plot</td>
-                <td>Sessions vs purchase amount</td>
-                <td>Shows correlation and outliers</td>
-            </tr>
+            <tr><th>Chart</th><th>Purpose</th><th>Why</th></tr>
+            <tr><td>Genre Bar Chart</td><td>Compare spend by genre</td><td>Easy category comparison</td></tr>
+            <tr><td>Segment Bar Chart</td><td>Show spending levels</td><td>Visual hierarchy</td></tr>
+            <tr><td>Scatter Plot</td><td>Sessions vs amount</td><td>Shows correlation</td></tr>
         </table>
-        
-        <h3>Color Choices</h3>
-        <ul>
-            <li><span class="badge badge-whale">Whale</span> Red - draws attention to high-value segment</li>
-            <li><span class="badge badge-dolphin">Dolphin</span> Orange - mid-tier visibility</li>
-            <li><span class="badge badge-minnow">Minnow</span> Green - low intensity for lower spenders</li>
-            <li>Genre colors - different colors help distinguish categories</li>
-        </ul>
-        
-        <h3>Interactive Features</h3>
-        <ul>
-            <li><strong>Filters:</strong> Genre, spending level, country, device - let users explore subsets</li>
-            <li><strong>Tooltips:</strong> Show exact values
+    </div>
+
+    <div class="card" id="insights">
+        <h2>Key Insights</h2>
+        <div class="finding"><strong>Finding 1:</strong> RPG and Strategy games show the highest average spend per user.</div>
+        <div class="finding"><strong>Finding 2:</strong> There is a strong correlation between session count and total purchase amount.</div>
+    </div>
+</div>
+</body>
+</html>
