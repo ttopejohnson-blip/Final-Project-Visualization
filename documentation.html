@@ -2,255 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mobile Game Purchase Analysis</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>Project Documentation</title>
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f0f0f0;
-        }
-        
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            background: white;
-            border: 1px solid #ccc;
-        }
-        
-        .header {
-            background: #2c3e6b;
-            color: white;
-            padding: 20px;
-            border-bottom: 3px solid #ff9900;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .header h1 {
-            margin: 0 0 5px 0;
-            font-size: 24px;
-        }
-        
-        .header p {
-            margin: 0;
-            font-size: 14px;
-            color: #ddd;
-        }
-
-        .doc-button {
-            background: #ff9900;
-            color: #2c3e6b !important;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-
-        .doc-button:hover {
-            background: #e68a00;
-        }
-        
-        .insights-bar {
-            background: #f8f8f8;
-            padding: 15px 20px;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .insight-card {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 8px 15px;
-            min-width: 120px;
-            text-align: center;
-        }
-        
-        .insight-label {
-            font-size: 11px;
-            color: #666;
-            text-transform: uppercase;
-        }
-        
-        .insight-value {
-            font-size: 20px;
-            font-weight: bold;
-            color: #2c3e6b;
-        }
-        
-        .filters {
-            background: #f8f8f8;
-            padding: 15px 20px;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
-        }
-        
-        .filter-group {
-            background: white;
-            border: 1px solid #ccc;
-            padding: 5px 10px;
-        }
-        
-        .filter-group label {
-            font-size: 12px;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-        
-        select, button {
-            padding: 5px 10px;
-            font-size: 12px;
-            background: white;
-            border: 1px solid #ccc;
-        }
-        
-        #resetBtn {
-            background: #2c3e6b;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        
-        #resetBtn:hover {
-            background: #ff9900;
-        }
-        
-        .viz-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            padding: 20px;
-        }
-        
-        .chart-card {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 15px;
-        }
-        
-        .chart-card h3 {
-            margin: 0 0 15px 0;
-            font-size: 16px;
-            color: #333;
-            border-left: 3px solid #ff9900;
-            padding-left: 10px;
-        }
-        
-        .chart {
-            width: 100%;
-            min-height: 350px;
-        }
-        
-        .tooltip {
-            position: absolute;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 8px 12px;
-            font-size: 11px;
-            pointer-events: none;
-            font-family: monospace;
-        }
-        
-        @media (max-width: 800px) {
-            .viz-grid {
-                grid-template-columns: 1fr;
-            }
-            .header {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-        }
-        
-        .footer {
-            background: #f8f8f8;
-            padding: 15px 20px;
-            font-size: 11px;
-            color: #666;
-            text-align: center;
-            border-top: 1px solid #ddd;
-        }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f0f0f0; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border: 1px solid #ccc; padding: 30px; }
+        h1, h2 { color: #2c3e6b; }
+        h1 { border-bottom: 2px solid #ff9900; padding-bottom: 10px; }
+        .nav { margin-bottom: 20px; }
+        .nav a { color: #2c3e6b; font-weight: bold; text-decoration: none; border: 1px solid #2c3e6b; padding: 5px 10px; border-radius: 4px; }
+        .nav a:hover { background: #2c3e6b; color: white; }
+        .section { margin-bottom: 30px; padding: 20px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; }
+        .video-btn { display: inline-block; background: #2c3e6b; color: white !important; padding: 12px 25px; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 10px; }
+        .video-btn:hover { background: #ff9900; color: #2c3e6b !important; }
+        .finding { background: #eaf7ea; border-left: 4px solid #27ae60; padding: 10px; margin: 10px 0; }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="header">
-        <div>
-            <h1>Mobile Game In-App Purchase Analysis</h1>
-            <p>Data from 2000+ players | Spending patterns by genre, region, and engagement</p>
-        </div>
-        <a href="documentation.html" class="doc-button">View Project Documentation</a>
-    </div>
-
-    <div class="insights-bar" id="insightsBar"></div>
-
-    <div class="filters">
-        <div class="filter-group">
-            <label>Genre:</label>
-            <select id="genreFilter">
-                <option value="all">All</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label>Spend Level:</label>
-            <select id="segmentFilter">
-                <option value="all">All</option>
-                <option value="Whale">Whale (over $1000)</option>
-                <option value="Dolphin">Dolphin ($50-$1000)</option>
-                <option value="Minnow">Minnow (under $50)</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label>Country:</label>
-            <select id="regionFilter">
-                <option value="all">All</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label>Device:</label>
-            <select id="deviceFilter">
-                <option value="all">All</option>
-                <option value="iOS">iOS</option>
-                <option value="Android">Android</option>
-            </select>
-        </div>
-        <button id="resetBtn">Reset Filters</button>
-    </div>
-
-    <div class="viz-grid">
-        <div class="chart-card">
-            <h3>Average Purchase by Game Genre</h3>
-            <div id="genreChart" class="chart"></div>
-        </div>
-        <div class="chart-card">
-            <h3>Average Spend by Player Segment</h3>
-            <div id="segmentChart" class="chart"></div>
-        </div>
-        <div class="chart-card">
-            <h3>Top 10 Countries by Total Spend</h3>
-            <div id="geoChart" class="chart"></div>
-        </div>
-        <div class="chart-card">
-            <h3>Session Count vs Purchase Amount</h3>
-            <div id="scatterChart" class="chart"></div>
-        </div>
+    <div class="nav">
+        <a href="index.html">← Back to Dashboard</a>
     </div>
     
-    <div class="footer">
-        Data source: Mobile game in-app purchase records | Created for D3 visualization project
+    <h1>Project Documentation</h1>
+    <p><strong>Student:</strong> Temitope Johnson | <strong>Class:</strong> Interactive Visualization | <strong>Date:</strong> May 1, 2026</p>
+
+    <div class="section">
+        <h2>Project Walkthrough</h2>
+        <p>The following video provides a complete walkthrough of the interactive dashboard functionality and data insights:</p>
+        <a href="https://drive.google.com/file/d/1Hn4WBXvghoHzUsWKD9MuM0gz9iDunvdc/view?usp=sharing" target="_blank" class="video-btn">
+            Video
+        </a>
+    </div>
+
+    <div class="section">
+        <h2>Research Questions</h2>
+        <ul>
+            <li>What factors drive high-value spenders in mobile games?</li>
+            <li>How does spending differ across game genres and countries?</li>
+            <li>What is the relationship between session count and purchase amount?</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Key Insights</h2>
+        <div class="finding">
+            <strong>Insight 1:</strong> RPG and Strategy genres consistently lead in average purchase value compared to Puzzle or Action titles.
+        </div>
+        <div class="finding">
+            <strong>Insight 2:</strong> There is a positive correlation between engagement (session count) and total spending, particularly within the "Whale" segment.
+        </div>
+        <div class="finding">
+            <strong>Insight 3:</strong> Geographic spending is concentrated in high-GDP regions, with specialized trends appearing in mobile-first markets.
+        </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-<script src="visualization.js"></script>
 </body>
 </html>
